@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --body-color:#E4E9F7;
+    --side-color:#FFF;
+    --primary-color:#695CFE;
+    --primary-color-light:#F6F5FF;
+    --toggle-color:#DDD;
+    --text-color:#707070;
+
+    /* Transition */
+    --tran-02:all 0.2s ease;
+    --tran-03:all 0.3s ease;
+    --tran-04:all 0.4s ease;
+    --tran-05:all 0.5s ease;
+}
+
+/* Style pour la section À propos */
+.about {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.about h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+.about p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Style pour le contenu */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style pour les différentes sections (histoire, travail, dehors) */
+.histoire, .travail, .dehors {
+    margin-bottom: 40px;
+}
+
+/* Style pour les titres des sections */
+.histoire h3, .travail h3, .dehors h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style pour les paragraphes du contenu */
+.histoire p, .travail p, .dehors p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Style pour les liens */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.flexLine {
+    display: flex;
+    text-align: center;
+}

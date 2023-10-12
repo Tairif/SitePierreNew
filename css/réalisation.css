@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --body-color:#E4E9F7;
+    --side-color:#FFF;
+    --primary-color:#695CFE;
+    --primary-color-light:#F6F5FF;
+    --toggle-color:#DDD;
+    --text-color:#707070;
+
+    /* Transition */
+    --tran-02:all 0.2s ease;
+    --tran-03:all 0.3s ease;
+    --tran-04:all 0.4s ease;
+    --tran-05:all 0.5s ease;
+}
+body {
+    background: var(--body-color);
+}
+
+.recherche {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.filtre {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: transform 0.5s;
+    width: 200px;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.filtre:hover {
+    transform: scale(1.05);
+}
+
+/* Style de base pour les cartes */
+.global-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card {
+    max-width: 300px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Style de base pour l'image de la carte */
+.card-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style pour le contenu de la carte */
+.card-content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style pour le titre de la carte */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Style pour la description de la carte */
+.card-description {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Style pour le bouton de la carte */
+.card-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--body-color);
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.5s;
+}
+
+.card-button:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+@media screen and (max-width:768px) {
+    .recherche {
+        flex-wrap: wrap;
+        padding: 25px;
+        margin: 25px;
+        height: 100px;
+        
+    }
+}
