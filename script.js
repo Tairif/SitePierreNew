@@ -14,16 +14,16 @@ modeText = body.querySelector(".mode-text");
 // sidebar.classList.remove("close");
 // })
 
-modeSwitch.addEventListener("click" , () =>{
-body.classList.toggle("dark");
+// modeSwitch.addEventListener("click" , () =>{
+// body.classList.toggle("dark");
 
-if(body.classList.contains("dark")){
-modeText.innerText = "Light mode";
-}else{
-modeText.innerText = "Dark mode";
+// if(body.classList.contains("dark")){
+// modeText.innerText = "Light mode";
+// }else{
+// modeText.innerText = "Dark mode";
 
-}
-});
+// }
+// });
 
 // Température
 const options = {
@@ -83,3 +83,10 @@ var swiper = new Swiper(".mySwiper", {
     }
   }
 });
+
+// Réalisation (API)
+const img = document.getElementsByClassName("card-image");
+
+fetch('https://pierre-delaunay.fr/wp-json/wp/v2/portfolio/?per_page=36&_embed')
+  .then(res => res.json())
+  .then(data => img.src = data[0].large)
