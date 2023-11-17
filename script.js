@@ -1,29 +1,33 @@
 const body = document.querySelector('body'),
-// sidebar = body.querySelector('nav'),
-// toggle = body.querySelector(".toggle"),
 searchBtn = body.querySelector(".search-box"),
 modeSwitch = body.querySelector(".toggle-switch"),
 modeText = body.querySelector(".mode-text");
+const toggler = document.querySelector(".hamburger");
+const navLinksContainer = document.querySelector(".navlinks-container");
+
+// SIDEBAR
+const toggleNav = e => {
+  // Animation du bouton
+  toggler.classList.toggle("open");
+
+  const ariaToggle =
+    toggler.getAttribute("aria-expanded") === "true" ? "false" : "true";
+  toggler.setAttribute("aria-expanded", ariaToggle);
+
+  // Slide de la navigation
+  navLinksContainer.classList.toggle("open");
+};
+
+toggler.addEventListener("click", toggleNav);
 
 
-// toggle.addEventListener("click" , () =>{
-// sidebar.classList.toggle("close");
-// })
-
-// searchBtn.addEventListener("click" , () =>{
-// sidebar.classList.remove("close");
-// })
-
-// modeSwitch.addEventListener("click" , () =>{
-// body.classList.toggle("dark");
-
-// if(body.classList.contains("dark")){
-// modeText.innerText = "Light mode";
-// }else{
-// modeText.innerText = "Dark mode";
-
-// }
-// });
+new ResizeObserver(entries => {
+  if (entries[0].contentRect.width <= 900){
+    navLinksContainer.style.transition = "transform 0.4s ease-out";
+  } else {
+    navLinksContainer.style.transition = "none";
+  }
+}).observe(document.body)
 
 // Température
 const options = {
