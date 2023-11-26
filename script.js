@@ -29,37 +29,37 @@ new ResizeObserver(entries => {
   }
 }).observe(document.body)
 
-// Température
-const options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-const localisation = document.querySelector(".localisation");
+// // Température
+// const options = {
+//   enableHighAccuracy: true,
+//   timeout: 5000,
+//   maximumAge: 0,
+// };
+// const localisation = document.querySelector(".localisation");
 
-function success(pos) {
-  const crd = pos.coords;
+// function success(pos) {
+//   const crd = pos.coords;
 
-  localisation.textContent = `Votre position acttuelle est de Latitude : ${crd.latitude} Longitude: ${crd.longitude} More or less ${crd.accuracy} meters.`;
-}
+//   localisation.textContent = `Votre position acttuelle est de Latitude : ${crd.latitude} Longitude: ${crd.longitude} More or less ${crd.accuracy} meters.`;
+// }
 
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-};
+// function error(err) {
+//   console.warn(`ERROR(${err.code}): ${err.message}`);
+// };
 
-let latitude = 0;
-let longitude = 0;
-const temperature = document.querySelector(".temperature");
-const button = document.querySelector("#position");
-button.addEventListener("click", () => {
-navigator.geolocation.getCurrentPosition(success, error, options)
-fetch(`https://weather.contrateumdev.com.br/api/weather?lat=${latitude}&lon=${longitude}`)
-.then((response) => {
-  return response.json();
-})
-.then((data) => temperature.textContent = data.main.temp + " °C");
-}
-);
+// let latitude = 0;
+// let longitude = 0;
+// const temperature = document.querySelector(".temperature");
+// const button = document.querySelector("#position");
+// button.addEventListener("click", () => {
+// navigator.geolocation.getCurrentPosition(success, error, options)
+// fetch(`https://weather.contrateumdev.com.br/api/weather?lat=${latitude}&lon=${longitude}`)
+// .then((response) => {
+//   return response.json();
+// })
+// .then((data) => temperature.textContent = data.main.temp + " °C");
+// }
+// );
 
 
 // Réalisation (Swipper)
@@ -88,9 +88,56 @@ var swiper = new Swiper(".mySwiper", {
   }
 });
 
-// Réalisation (API)
-const img = document.getElementsByClassName("card-image");
+// // Réalisation (API)
+document.addEventListener("DOMContentLoaded", function () {
+  const portfolioContainer = document.getElementById("portfolio-container");
+  const filterButtons = document.querySelectorAll(".filtre");
 
-fetch('https://pierre-delaunay.fr/wp-json/wp/v2/portfolio/?per_page=36&_embed')
-  .then(res => res.json())
-  .then(data => img.src = data[0].large)
+  // Fetch data from the provided API
+  fetch("https://pierre-delaunay.fr/wp-json/wp/v2/portfolio/?per_page=36&_embed")
+      .then(response => response.json())
+      .then(data => {
+          // Create buttons for each project type
+          // const projectTypes = ["all", "Design", "Web", "Mobile", "Formation"];
+          // projectTypes.forEach(type => {
+          //     const button = document.createElement("button");
+          //     button.textContent = type;
+          //     button.setAttribute("data-filter", type);
+          //     filterButtons.forEach(button => button.addEventListener("click", function () {
+          //         filterItems(this.getAttribute("data-filter"));
+          //     }));
+          // });
+
+          // Function to filter items based on project type
+          function filterItems(type) {
+              portfolioContainer.innerHTML = ""; // Clear the container
+
+              data.forEach(item => {
+                  const itemType = item.acf && item.acf.project_type ? item.acf.project_type : null;
+
+                  if (type === "all" || itemType === type) {
+                      const portfolioItem = document.createElement("div");
+                      portfolioItem.classList.add("portfolio-item");
+
+                      const title = item.title.rendered;
+                      const content = item.content.rendered;
+                      const imageUrl = item._embedded && item._embedded["wp:featuredmedia"] ? item._embedded["wp:featuredmedia"][0].source_url : '';
+
+                      portfolioItem.innerHTML = `
+                          <h2>${title}</h2>
+                          <img src="${imageUrl}" alt="${title}">
+                          <div>${content}</div>
+                      `;
+
+                      portfolioContainer.appendChild(portfolioItem);
+                  }
+              });
+          }
+
+          // Initial load with "All" filter
+          filterItems("all");
+      })
+      .catch(error => {
+          console.error("Error fetching data:", error);
+      });
+});
