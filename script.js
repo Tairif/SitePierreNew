@@ -9,15 +9,15 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(response => response.json())
       .then(data => {
           // Create buttons for each project type
-          const projectTypes = ["all", "Design", "Web", "Mobile", "Formation"];
-          projectTypes.forEach(type => {
-              const button = document.createElement("button");
-              button.textContent = type;
-              button.setAttribute("data-filter", type);
-              filterButtons.forEach(button => button.addEventListener("click", function () {
-                  filterItems(this.getAttribute("data-filter"));
-              }));
-          });
+        //   const projectTypes = ["all", "Design", "Web", "Mobile", "Formation"];
+        //   projectTypes.forEach(type => {
+        //       const button = document.createElement("button");
+        //       button.textContent = type;
+        //       button.setAttribute("data-filter", type);
+        //       filterButtons.forEach(button => button.addEventListener("click", function () {
+        //           filterItems(this.getAttribute("data-filter"));
+        //       }));
+        //   });
 
           // Function to filter items based on project type
           function filterItems(type) {
